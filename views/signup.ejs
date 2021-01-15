@@ -1,0 +1,23 @@
+<%- include("./partials/head") %>
+
+<h1>want to sign up?</h1>
+<form action="/signup" method="POST">
+    <input type="text" name="name" placeholder="Name">
+    <input type="email" name="email" placeholder="Email">
+    <input type="tel" name="tel" placeholder="Telephone">
+
+    <label for="male">Male</label>
+    <input type="radio" name="gender" id="male" value="male">
+
+    <label for="female">Female</label>
+    <input type="radio" name="gender" id="female" value="female">
+
+    <label for="female">Other</label>
+    <input type="radio" name="gender" id="other" value="other">
+
+    <textarea name="statement" id="" cols="30" rows="10" placeholder="Statement about yourself"></textarea>
+    <input type="submit" value="Send">
+
+</form>
+
+<%- include("./partials/footer") %>

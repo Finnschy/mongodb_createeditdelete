@@ -1,0 +1,15 @@
+<%- include("./partials/head") %>
+
+<h1>all Contacts</h1>
+<% contactData.forEach(contact => { %>
+    <div>
+        <h3>
+            <%= contact.name %>
+        </h3>
+        <p>
+            <%= contact.statement %>
+        </p>
+        <a href="/contacts/<%= contact.id%>">Tell me more</a>
+    </div>
+<%})%>
+<%- include("./partials/footer") %>

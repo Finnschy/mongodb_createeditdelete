@@ -1,0 +1,45 @@
+<%- include("./partials/head") %>
+<%# an das data- kann jeder Name gehängt werden und in Daten gespeichert werden%>
+
+<h1>Single Contact</h1>
+<button onclick="toggleHide()">Edit User</button>
+<a href="/contacts/<%=contact.id%>/delete">Delete</a>
+    <div id="user">
+        
+        <h3>
+            Name: <%= contact.name %>
+        </h3>
+        <p>
+            Telefon: <%= contact.tel %>
+        </p>
+        <p>
+            Email: <%= contact.email %>
+        </p>
+        <p>
+            Gender: <%= contact.gender %>
+        </p>
+        <p>
+            Statement: <%= contact.statement %>
+        </p>
+        
+    </div>
+
+    <form action="/contacts/<%=contact.id%>/edit" method="POST" id="myForm" class="hide">
+        <input type="text" name="name" placeholder="Name" value=<%= contact.name %> >
+        <input type="email" name="email" placeholder="Email" value=<%= contact.email %>>
+        <input type="tel" name="tel" placeholder="Telephone" value=<%= contact.tel %> >
+    
+        <label for="male">Male</label>
+        <input type="radio" name="gender" id="male" value="male" <%= contact.gender === "male" ? "checked" : "" %>>
+    
+        <label for="female">Female</label>
+        <input type="radio" name="gender" id="female" value="female" <%= contact.gender === "female" ? "checked" : "" %>>
+    
+        <label for="female">Other</label>
+        <input type="radio" name="gender" id="other" value="other" <%= contact.gender === "other" ? "checked" : "" %>>
+    
+        <textarea name="statement" id="" cols="30" rows="10" placeholder="Statement about yourself"><%= contact.statement %></textarea>
+        <input type="submit" value="Send">
+    
+    </form>
+<%- include("./partials/footer") %>
