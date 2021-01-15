@@ -3,7 +3,8 @@
 
 <h1>Single Contact</h1>
 <button onclick="toggleHide()">Edit User</button>
-<a href="/contacts/<%=contact.id%>/delete">Delete</a>
+<!-- <a href="/contacts/<%#=contact.id%>/delete">Delete</a> -->
+<a class="delete" data-id=<%=contact.id%>>Delete</a>
     <div id="user">
         
         <h3>
@@ -42,4 +43,22 @@
         <input type="submit" value="Send">
     
     </form>
+
+
+    <script>
+        // referenz zu dem a tag , das löschen soll
+        const trash = document.querySelector("a.delete")
+        trash.addEventListener("click", (e) => {
+            console.log(e);
+            const endpoint = `/contacts/${trash.dataset.id}`
+            console.log(endpoint)
+            fetch(endpoint, {
+                method: "DELETE"
+            })
+                .then(response => response.json())
+                .then(data => window.location.href = data.redirect)
+                .catch(err => console.log(err))
+        })
+
+    </script>
 <%- include("./partials/footer") %>

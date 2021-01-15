@@ -55,11 +55,11 @@ app.get("/contacts/:id", (req, res) => {
     .catch(err => console.log(err))
 })
 
-app.get("/contacts/:id/delete", (req, res) => {
-    Contact.findByIdAndDelete(req.params.id)
-    .then(result => res.redirect("/contacts"))
-    .catch(err => console.log(err))
-})
+// app.get("/contacts/:id/delete", (req, res) => {
+//     Contact.findByIdAndDelete(req.params.id)
+//     .then(result => res.redirect("/contacts"))
+//     .catch(err => console.log(err))
+// })
 
 app.post("/contacts/:id/edit", (req, res) => {
     console.log(req.body);
@@ -72,6 +72,19 @@ app.post("/contacts/:id/edit", (req, res) => {
     // }
     Contact.findByIdAndUpdate(req.params.id, req.body)
     .then(result => res.redirect(`/contacts/${req.params.id}`))
+    .catch(err => console.log(err))
+})
+
+
+app.delete("/contacts/:id", (req, res) => {
+    Contact.findByIdAndDelete(req.params.id)
+    .then(result => {
+         // kein redirect möglich, da fetch ein AJAX request ist und JSON / Text erwartet
+         //dh wir müssen JSON zurücksenden und den redirect im frontend lösen
+         res.json({
+             redirect: "/contacts"
+         })
+    })
     .catch(err => console.log(err))
 })
 
